@@ -5,6 +5,7 @@ export function Home() {
             <br />
             <br />
             <br />
+       
             <h1>Go To Store And Buy Something!</h1>
         </>
          

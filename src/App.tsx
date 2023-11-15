@@ -1,15 +1,21 @@
-import { Route, Routes } from "react-router-dom"
 import { Container } from "react-bootstrap"
+import { Route, Routes } from "react-router-dom"
+import { Navbar } from "./components/Navbar"
+import { ShoppingCart } from "./components/ShoppingCart"
+import { About } from "./pages/About"
 import { Home } from "./pages/Home"
 import { Store } from "./pages/Store"
-import { About } from "./pages/About"
-import { Navbar } from "./components/Navbar"
-import { ShoppingCartProvider } from "./context/ShoppingCartContext"
+import { RootState } from "./app/store"
+import { useSelector } from "react-redux"
 
 function App() {
+  const { isOpen } = useSelector((state: RootState) => state.cart)
+  console.log(isOpen);
+  
   return (
-    <ShoppingCartProvider>
+    <>
       <Navbar />
+      <ShoppingCart isOpen={isOpen} />
       <Container className="mb-4">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -17,7 +23,9 @@ function App() {
           <Route path="/about" element={<About />} />
         </Routes>
       </Container>
-    </ShoppingCartProvider>
+
+    </>
+
   )
 }
 
